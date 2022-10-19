@@ -16,7 +16,7 @@ class TableController extends Controller
     public function index()
     {
         $tables = Table::all();
-        return view("admin.tables.index", compact('tales'));
+        return view("admin.tables.index", compact('tables'));
     }
 
     /**
@@ -26,7 +26,7 @@ class TableController extends Controller
      */
     public function create()
     {
-        //
+        return view("admin.tables.create");
     }
 
     /**
