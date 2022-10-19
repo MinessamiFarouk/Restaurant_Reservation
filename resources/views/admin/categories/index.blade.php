@@ -47,10 +47,14 @@
                                         {{ $category->description }}
                                     </th>
                                     <td class="py-4 px-6 text-right">
-                                        <a href="#" class="font-medium text-red-600 dark:text-red-500 hover:underline">Delete</a>
+                                        <a href="{{ route('admin.categories.edit', $category->id) }}" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Edite</a>
                                     </td>
                                     <td class="py-4 px-6 text-right">
-                                        <a href="#" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Edit</a>
+                                        <form action="{{ route('admin.categories.destroy', $category->id) }}" method="POST" onsubmit="return confirm('are you sure?')" class="font-medium text-red-600 dark:text-red-500 hover:underline">
+                                            @csrf
+                                            @method('DELETE')
+                                            <button type="submit">Delete</button>
+                                        </form>
                                     </td>
                                 </tr>
                             @endforeach
