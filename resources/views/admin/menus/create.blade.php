@@ -46,6 +46,43 @@
                             <p class="text-red-500 text-xs mt-1">{{$message}}</p>
                         @enderror
                     </div>
+
+                    <div class="mb-6">
+                        <label
+                            for="price"
+                            class="inline-block text-lg mb-2"
+                            >Price</label
+                        >
+                        <input
+                            type="number"
+                            min="0.00"
+                            max="10000.00"
+                            step="0.01"
+                            class="border border-gray-200 rounded p-2 w-full"
+                            name="price"
+                            value="{{old('price')}}"
+                        />
+                        @error('price')
+                            <p class="text-red-500 text-xs mt-1">{{$message}}</p>
+                        @enderror
+                    </div>
+
+                    <div class="mb-16">
+                        <label
+                            for="categories"
+                            class="inline-block text-lg mb-2"
+                        >
+                            Categories
+                        </label>
+                        <select name="categoies[]" id="" multiple class="block form-multiselect rounded p-2 w-full">
+                            @foreach ($categories as $category)
+                                <option value="">{{ $category->name }}</option>
+                            @endforeach
+                        </select>
+                        @error('description')
+                            <p class="text-red-500 text-xs mt-1">{{$message}}</p>
+                        @enderror
+                    </div>
                 
                     <div class="mb-16">
                         <label
