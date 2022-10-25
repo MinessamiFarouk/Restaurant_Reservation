@@ -9,8 +9,11 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 class Menu extends Model
 {
     use HasFactory;
+
+    protected $fillable = ['name', 'description', 'price', 'image'];
+
     public function categories()
     {
-        return $this->belongsToMany(Category::class, "category_menu_r");
+        return $this->belongsToMany(Category::class, "category_menu_relation");
     }
 }

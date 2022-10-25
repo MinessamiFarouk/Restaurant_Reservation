@@ -13,8 +13,9 @@
                 </a>
             </div>
             <div class="m-2 p-2">
-                <form action="{{ route("admin.menus.store") }}" method="POST" enctype="multipart/form-data">
+                <form action="{{ route('admin.menus.update', $menu->id) }}" method="POST" enctype="multipart/form-data">
                     @csrf
+                    @method('PUT')
                     <div class="mb-6">
                         <label
                             for="name"
@@ -25,7 +26,7 @@
                             type="text"
                             class="border border-gray-200 rounded p-2 w-full"
                             name="name"
-                            value="{{old('name')}}"
+                            value="{{ $menu->name }}"
                         />
                         @error('name')
                             <p class="text-red-500 text-xs mt-1">{{$message}}</p>
@@ -33,15 +34,18 @@
                     </div>
                 
                     <div class="mb-6">
-                        <label for="logo" class="inline-block text-lg mb-2">
+                        <label for="image" class="inline-block text-lg mb-2">
                             Image
                         </label>
                         <input
                             type="file"
                             class="border border-gray-200 rounded p-2 w-full"
                             name="image"
-                            value="{{old('image')}}"
+                            value="{{ $menu->image }}"
                         />
+                        <div>
+                            <img src="{{ Storage::url($menu->image) }}" alt="" class="w-20 h-20">
+                        </div>
                         @error('image')
                             <p class="text-red-500 text-xs mt-1">{{$message}}</p>
                         @enderror
@@ -60,7 +64,7 @@
                             step="0.01"
                             class="border border-gray-200 rounded p-2 w-full"
                             name="price"
-                            value="{{old('price')}}"
+                            value="{{ $menu->price }}"
                         />
                         @error('price')
                             <p class="text-red-500 text-xs mt-1">{{$message}}</p>
@@ -76,7 +80,7 @@
                         </label>
                         <select name="categories[]" id="" multiple class="block form-multiselect rounded p-2 w-full">
                             @foreach ($categories as $category)
-                                <option value="{{ $category->id }}">{{ $category->name }}</option>
+                                <option value="{{ $category->id }}" @selected($menu->categories->contains($category))>{{ $category->name }}</option>
                             @endforeach
                         </select>
                         @error('categoies')
@@ -95,7 +99,7 @@
                             class="border border-gray-200 rounded p-2 w-full"
                             name="description"
                             rows="10"
-                        >{{old("description")}}</textarea>
+                        >{{ $menu->description }}</textarea>
                         @error('description')
                             <p class="text-red-500 text-xs mt-1">{{$message}}</p>
                         @enderror
@@ -105,7 +109,7 @@
                         <button
                             class="px-4 py-2 text-gray-200 text-sm bg-gray-700 hover:bg-gray-500 rounded-lg"
                         >
-                            Create Menu
+                            Update Menu
                         </button>
                     </div>
                 </form>

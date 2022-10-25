@@ -13,9 +13,9 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('category_menu_r', function (Blueprint $table) {
-            $table->foreign("category_id")->constrained();
-            $table->foreign("menu_id")->constrained();
+        Schema::create('category_menu_relation', function (Blueprint $table) {
+            $table->foreignId("category_id")->constrained();
+            $table->foreignId("menu_id")->constrained();
         });
     }
 
@@ -26,6 +26,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('category_menu_r');
+        Schema::dropIfExists('category_menu_relation');
     }
 };
